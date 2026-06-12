@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Happy Birthday Amit! 🎉</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{font-family:'Segoe UI',system-ui,sans-serif;color:#fff;overflow-x:hidden;scroll-behavior:smooth}
+  body{background:#0f0c29;min-height:100vh}
+
+  .page{
+    min-height:100vh;display:none;align-items:center;justify-content:center;
+    padding:60px 20px;position:relative;flex-direction:column;text-align:center;
+    animation:fadeIn .6s ease;
+  }
+  .page.active{display:flex}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
+  /* Page backgrounds */
+  #p1{background:radial-gradient(ellipse at top,#e94560 0%,transparent 60%),linear-gradient(135deg,#1a1a2e,#16213e)}
+  #p2{background:radial-gradient(circle at 20% 20%,rgba(255,209,102,.3),transparent 50%),radial-gradient(circle at 80% 70%,rgba(168,85,247,.4),transparent 50%),linear-gradient(135deg,#0f0c29,#302b63,#24243e)}
+  #p3{background:linear-gradient(135deg,#ff6b6b,#feca57,#48dbfb,#a55eea)}
+  #p4{background:radial-gradient(circle at 50% 0%,#f72585,transparent 60%),linear-gradient(180deg,#240046,#3c096c,#5a189a)}
+  #p5{background:linear-gradient(135deg,#0b132b,#1c2541,#3a506b)}
+  #p6{background:radial-gradient(circle at 70% 30%,#06d6a0,transparent 50%),linear-gradient(135deg,#073b4c,#118ab2)}
+  #p7{background:radial-gradient(circle at 30% 70%,#ffd166,transparent 50%),linear-gradient(135deg,#7209b7,#3a0ca3,#480ca8)}
+  #p8{background:radial-gradient(ellipse at center,#ef476f 0%,#a855f7 40%,#1a1a2e 100%)}
+
+  .card{
+    background:rgba(255,255,255,.08);backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.18);border-radius:28px;
+    padding:50px 40px;max-width:680px;width:100%;
+    box-shadow:0 30px 80px rgba(0,0,0,.5);
+    animation:popIn .7s cubic-bezier(.34,1.56,.64,1);
+  }
+  @keyframes popIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+
+  .emoji-big{font-size:90px;display:inline-block;animation:wiggle 2.5s ease-in-out infinite}
+  @keyframes wiggle{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+
+  h1{
+    font-size:clamp(2rem,6vw,3.6rem);margin:18px 0 12px;font-weight:900;letter-spacing:-1px;
+    background:linear-gradient(90deg,#ffd166,#ef476f,#a855f7,#06d6a0);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    background-size:300% 100%;animation:shine 4s linear infinite;
+  }
+  @keyframes shine{to{background-position:300% 0}}
+  h2{font-size:clamp(1.5rem,4vw,2.4rem);font-weight:800;margin-bottom:18px}
+  p{color:rgba(255,255,255,.88);font-size:1.1rem;line-height:1.7;margin:10px 0}
+  .kicker{display:inline-block;padding:6px 18px;border-radius:999px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);font-size:.8rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:18px}
+
+  .gallery{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:20px 0}
+  .gallery span{
+    width:70px;height:70px;display:grid;place-items:center;font-size:34px;
+    background:rgba(255,255,255,.12);border-radius:20px;border:1px solid rgba(255,255,255,.2);
+    animation:floatY 3s ease-in-out infinite;
+  }
+  .gallery span:nth-child(2){animation-delay:.2s}
+  .gallery span:nth-child(3){animation-delay:.4s}
+  .gallery span:nth-child(4){animation-delay:.6s}
+  .gallery span:nth-child(5){animation-delay:.8s}
+  @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+  .wishes{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:20px}
+  .wish{background:rgba(255,255,255,.1);padding:18px;border-radius:18px;border:1px solid rgba(255,255,255,.15);font-size:.95rem}
+  .wish b{display:block;font-size:1.4rem;margin-bottom:6px}
+
+  .timeline{text-align:left;max-width:520px;margin:20px auto 0}
+  .timeline div{padding:14px 18px;border-left:3px solid #ffd166;margin:10px 0;background:rgba(255,255,255,.06);border-radius:0 12px 12px 0}
+  .timeline b{color:#ffd166;display:block;font-size:.85rem;letter-spacing:1px}
+
+  .quote{font-style:italic;font-size:1.3rem;line-height:1.6;color:#fff;padding:20px;border-top:2px solid rgba(255,255,255,.3);border-bottom:2px solid rgba(255,255,255,.3);margin:20px 0}
+
+  /* Nav */
+  .nav{
+    position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+    display:flex;gap:10px;align-items:center;z-index:100;
+    background:rgba(0,0,0,.5);backdrop-filter:blur(10px);
+    padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.2);
+  }
+  .nav button{
+    background:linear-gradient(135deg,#ef476f,#a855f7);border:none;color:#fff;
+    width:42px;height:42px;border-radius:50%;cursor:pointer;font-size:1.1rem;
+    transition:transform .2s;
+  }
+  .nav button:hover{transform:scale(1.1)}
+  .nav button:disabled{opacity:.4;cursor:not-allowed}
+  .counter{color:#fff;font-weight:600;font-size:.9rem;min-width:50px;text-align:center}
+
+  .dots{display:flex;gap:6px;margin:0 8px}
+  .dots span{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:all .3s}
+  .dots span.on{background:#ffd166;width:24px;border-radius:4px}
+
+  .balloon{position:fixed;bottom:-80px;font-size:38px;pointer-events:none;animation:floatUp linear infinite;z-index:0}
+  @keyframes floatUp{to{transform:translateY(-110vh) rotate(360deg);opacity:0}}
+
+  canvas{position:fixed;inset:0;pointer-events:none;z-index:50}
+
+  .btn{
+    border:none;cursor:pointer;padding:14px 30px;border-radius:999px;
+    font-size:1rem;font-weight:700;color:#fff;margin:8px 4px;
+    background:linear-gradient(135deg,#ef476f,#a855f7);
+    box-shadow:0 10px 30px rgba(168,85,247,.5);
+    transition:transform .2s, box-shadow .2s;
+  }
+  .btn:hover{transform:translateY(-3px) scale(1.05)}
+</style>
+</head>
+<body>
+
+<!-- PAGE 1: Welcome -->
+<section id="p1" class="page active">
+  <div class="card">
+    <div class="emoji-big">🎂</div>
+    <h1>Happy Birthday Amit!</h1>
+    <p>A new year of joy, laughter, and unforgettable moments begins today ✨</p>
+    <button class="btn" onclick="celebrate();goTo(1)">🎉 Start the Celebration →</button>
+  </div>
+</section>
+
+<!-- PAGE 2: Big Wish -->
+<section id="p2" class="page">
+  <div class="card">
+    <span class="kicker">A Special Wish</span>
+    <h1>Cheers to You! 🥂</h1>
+    <div class="gallery"><span>🎈</span><span>🎁</span><span>🎂</span><span>🌟</span><span>💖</span></div>
+    <p>May this year bring you adventures, success, and endless happiness.<br/>You deserve the world, Amit.</p>
+  </div>
+</section>
+
+<!-- PAGE 3: Wishes Grid -->
+<section id="p3" class="page">
+  <div class="card" style="max-width:780px">
+    <span class="kicker">Birthday Wishes</span>
+    <h2>Six wishes just for you</h2>
+    <div class="wishes">
+      <div class="wish"><b>💼</b>Endless success in everything you do</div>
+      <div class="wish"><b>❤️</b>Love that surrounds you every day</div>
+      <div class="wish"><b>🌍</b>Adventures across the world</div>
+      <div class="wish"><b>😂</b>Laughter that never fades</div>
+      <div class="wish"><b>🧠</b>Wisdom in every decision</div>
+      <div class="wish"><b>✨</b>Dreams that come true</div>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE 4: Quote -->
+<section id="p4" class="page">
+  <div class="card">
+    <div class="emoji-big">💫</div>
+    <h2>A Thought for Today</h2>
+    <div class="quote">"Count your age by friends, not years.<br/>Count your life by smiles, not tears."</div>
+    <p style="opacity:.8">— John Lennon</p>
+  </div>
+</section>
+
+<!-- PAGE 5: Timeline -->
+<section id="p5" class="page">
+  <div class="card">
+    <span class="kicker">Your Journey</span>
+    <h2>Another chapter begins 📖</h2>
+    <div class="timeline">
+      <div><b>YESTERDAY</b>Memories that made you smile</div>
+      <div><b>TODAY</b>A day filled with love & cake 🎂</div>
+      <div><b>TOMORROW</b>New adventures waiting for you</div>
+      <div><b>ALWAYS</b>Friends who care about you 💖</div>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE 6: Fun fact -->
+<section id="p6" class="page">
+  <div class="card">
+    <div class="emoji-big">🎁</div>
+    <h2>Did you know?</h2>
+    <p>The world celebrates over <b style="color:#ffd166">21 million</b> birthdays today — but only one of them is <b style="color:#ffd166">yours</b>, Amit. That makes today extra special.</p>
+    <div class="gallery"><span>🌟</span><span>🎊</span><span>🥳</span></div>
+  </div>
+</section>
+
+<!-- PAGE 7: Message -->
+<section id="p7" class="page">
+  <div class="card">
+    <span class="kicker">From the heart</span>
+    <h2>You're one in a million ✨</h2>
+    <p>Thank you for being the kind, funny, and incredible person you are. The world is brighter with you in it.</p>
+    <p>Wishing you a year that's just as amazing as you. 💖</p>
+    <p style="margin-top:20px;font-style:italic;opacity:.85">— With love, your biggest fans</p>
+  </div>
+</section>
+
+<!-- PAGE 8: Finale -->
+<section id="p8" class="page">
+  <div class="card">
+    <div class="emoji-big">🎆</div>
+    <h1>Make a Wish, Amit!</h1>
+    <p>Close your eyes, blow out the candles, and let the magic begin 🕯️✨</p>
+    <button class="btn" onclick="bigCelebrate()">🎊 Light the Candles</button>
+    <button class="btn" style="background:rgba(255,255,255,.15)" onclick="goTo(0)">🔁 Replay</button>
+  </div>
+</section>
+
+<!-- Nav bar -->
+<div class="nav">
+  <button onclick="prev()" id="prevBtn">←</button>
+  <div class="dots" id="dots"></div>
+  <span class="counter" id="counter">1 / 8</span>
+  <button onclick="next()" id="nextBtn">→</button>
+</div>
+
+<canvas id="cv"></canvas>
+
+<script>
+  const total=8;let cur=0;
+  const dotsEl=document.getElementById('dots');
+  for(let i=0;i<total;i++){
+    const d=document.createElement('span');
+    d.onclick=()=>goTo(i);dotsEl.appendChild(d);
+  }
+  function goTo(i){
+    if(i<0||i>=total)return;
+    document.querySelectorAll('.page')[cur].classList.remove('active');
+    cur=i;
+    document.querySelectorAll('.page')[cur].classList.add('active');
+    document.getElementById('counter').textContent=(cur+1)+' / '+total;
+    [...dotsEl.children].forEach((d,j)=>d.classList.toggle('on',j===cur));
+    document.getElementById('prevBtn').disabled=cur===0;
+    document.getElementById('nextBtn').disabled=cur===total-1;
+    window.scrollTo(0,0);
+    if(cur>0)celebrate(40);
+  }
+  function next(){goTo(cur+1)}
+  function prev(){goTo(cur-1)}
+  goTo(0);
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight')next();
+    if(e.key==='ArrowLeft')prev();
+  });
+
+  // Balloons
+  const emojis=['🎈','🎉','🎁','⭐','💖','🎂','🥳'];
+  setInterval(()=>{
+    const b=document.createElement('div');
+    b.className='balloon';
+    b.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+    b.style.left=Math.random()*100+'vw';
+    b.style.animationDuration=(6+Math.random()*6)+'s';
+    b.style.fontSize=(28+Math.random()*30)+'px';
+    document.body.appendChild(b);
+    setTimeout(()=>b.remove(),12000);
+  },700);
+
+  // Confetti
+  const cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+  function resize(){cv.width=innerWidth;cv.height=innerHeight}resize();onresize=resize;
+  let parts=[];
+  function celebrate(n=120){
+    const colors=['#ef476f','#ffd166','#06d6a0','#118ab2','#a855f7','#ff6ec7','#48dbfb'];
+    for(let i=0;i<n;i++){
+      parts.push({
+        x:innerWidth/2,y:innerHeight/2,
+        vx:(Math.random()-.5)*14,vy:(Math.random()-.7)*14,
+        g:.25,drag:.99,size:6+Math.random()*6,
+        color:colors[i%colors.length],rot:Math.random()*Math.PI,vr:(Math.random()-.5)*.2,
+        life:140
+      });
+    }
+  }
+  function bigCelebrate(){celebrate(300)}
+  function tick(){
+    ctx.clearRect(0,0,cv.width,cv.height);
+    parts=parts.filter(p=>p.life>0);
+    parts.forEach(p=>{
+      p.vy+=p.g;p.vx*=p.drag;p.vy*=p.drag;
+      p.x+=p.vx;p.y+=p.vy;p.rot+=p.vr;p.life--;
+      ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);
+      ctx.fillStyle=p.color;ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size*.6);
+      ctx.restore();
+    });
+    requestAnimationFrame(tick);
+  }
+  tick();
+</script>
+</body>
+</html>
